@@ -8,7 +8,7 @@ sudo apt install git htop zsh curl tig neovim
 for DOTFILE in `find ~/.dotfiles -maxdepth 1 -type f`
 do
     #sudo ln -sfv $DOTFILE ~ 
-    if [ $DOTFILE != ".setup" ]; then
+    if [ $DOTFILE != ".setup.sh" ]; then
     	#echo $DOTFILE
 	sudo ln -sfv $DOTFILE ~
     fi

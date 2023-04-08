@@ -1,16 +1,17 @@
 #!/bin/bash
 
 #Install programs
-apt update
-apt install git htop zsh curl tig neovim
-
-#Change default shell
-chsh -s /bin/zsh $USER
+sudo apt update
+sudo apt install git htop zsh curl tig neovim
 
 #Create links for all dotfiles
-for DOTFILE in . 
+for DOTFILE in `find ~/.dotfiles -maxdepth 1 -type f`
 do
-    [ -f "$DOTFILE" ] && ln -s $DOTFILE ~ 
+    #sudo ln -sfv $DOTFILE ~ 
+    if [ $DOTFILE != ".setup" ]; then
+    	#echo $DOTFILE
+	sudo ln -sfv $DOTFILE ~
+    fi
 done
 
 #Install oh-my-zsh

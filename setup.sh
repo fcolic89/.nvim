@@ -10,12 +10,11 @@ color='\033[0;33m' #yellow
 nocolor='\033[0m' # No Color
 
 #Backing up old dotfiles
-echo -e "${color}[$name] Backing up old dot files!${nocolor}"
+echo -e "${color}[$name] Backing up old dotfiles in $olddir!${nocolor}"
 mkdir -p $olddir
 cd $dir
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
+    mv ~/.$file $olddir
 done
 
 #Install programs

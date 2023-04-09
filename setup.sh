@@ -5,7 +5,7 @@ name="SETUP.SH"
 programs="git htop zsh curl tig neovim"
 dir=~/.dotfiles
 olddir=~/.dotfiles_old
-files="bashrc vimrc vim zshrc oh-my-zsh"
+files="bashrc vimrc zshrc profile zprofile"
 color='\033[0;33m' #yellow
 nocolor='\033[0m' # No Color
 

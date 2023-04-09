@@ -4,6 +4,9 @@
 sudo apt update
 sudo apt install git htop zsh curl tig neovim
 
+#Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 #Create links for all dotfiles
 for DOTFILE in `find ~/.dotfiles -maxdepth 1 -type f`
 do
@@ -12,6 +15,3 @@ do
 	sudo ln -sfv $DOTFILE ~
     fi
 done
-
-#Install oh-my-zsh
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

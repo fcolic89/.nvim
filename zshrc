@@ -110,6 +110,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+#remove all aliases
+unalias -a
+#add zsh configs
 source ./.aliases
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

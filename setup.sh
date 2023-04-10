@@ -9,30 +9,40 @@ files="bashrc vimrc zshrc profile zprofile"
 color='\033[0;33m' #yellow
 nocolor='\033[0m' # No Color
 
-#Backing up old dotfiles
-echo -e "${color}[$name] Backing up old dotfiles in $olddir!${nocolor}"
-mkdir -p $olddir
-cd $dir
-for file in $files; do
-    mv ~/.$file $olddir
-done
+info() {
+    echo -e "$color[$name] $1!$nocolor"
+}
 
-#Install programs
-echo -e "${color}[$name] Installing programs!${nocolor}"
-sudo apt update
-sudo apt install $programs
+backup_files () {
+    info "Backing up old dotfiles"
+    mkdir -p $olddir
+    cd $dir
+    for file in $files; do
+       mv ~/.$file $olddir
+    done
+}
 
-#Install oh-my-zsh
-echo -e "${color}[$name] Installing oh-my-zsh!${nocolor}"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+install_programs(){
+   info "Installing programs"
+   sudo apt update
+   sudo apt install $programs
+}
 
-#Create links for all dotfiles
-echo -e "${color}[$name] Creating links to dotfiles!${nocolor}"
-for DOTFILE in `find ~/.dotfiles -maxdepth 1 -type f`
-do
-    filename=${DOTFILE##*/}
-    if [[ $filename != setup.sh ]]; then
-    	#echo $DOTFILE
-	sudo ln -sfv $dir/$filename ~/".$filename"
-    fi
-done
+install_ohmyzsh (){
+    info "Installing oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+
+install_dotfiles () {
+    info "Installing dorfiles"
+    for src in $(find -H "$dir" -maxdepth 2 -name '*.slink' -not -path '*.git*')
+    do
+      dst="$HOME/.$(basename "${src%.*}")"
+      ln -sfv "$src" "$dst"
+    done
+}
+#backup_files
+install_programs
+#install_ohmyzsh
+install_dotfiles

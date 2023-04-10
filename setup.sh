@@ -3,8 +3,8 @@
 #Variables
 name="SETUP.SH"
 programs="git htop zsh curl tig neovim"
-dir=~/.dotfiles
-olddir=~/.dotfiles_old
+dir="$HOME/.dotfiles"
+old_dir="$HOME/.dotfiles_old"
 files="bashrc vimrc zshrc profile zprofile"
 color='\033[0;33m' #yellow
 nocolor='\033[0m' # No Color
@@ -15,10 +15,10 @@ info() {
 
 backup_files () {
     info "Backing up old dotfiles"
-    mkdir -p $olddir
+    mkdir -p $old_dir
     cd $dir
     for file in $files; do
-       mv ~/.$file $olddir
+       mv ~/.$file $old_dir
     done
 }
 
@@ -33,16 +33,16 @@ install_ohmyzsh (){
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-
 install_dotfiles () {
-    info "Installing dorfiles"
+    info "Installing dotfiles"
     for src in $(find -H "$dir" -maxdepth 2 -name '*.slink' -not -path '*.git*')
     do
       dst="$HOME/.$(basename "${src%.*}")"
       ln -sfv "$src" "$dst"
     done
 }
-#backup_files
+
+backup_files
 install_programs
 #install_ohmyzsh
 install_dotfiles

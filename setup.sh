@@ -5,6 +5,7 @@ name="SETUP.SH"
 programs="git htop zsh curl tig neovim"
 dir="$HOME/.dotfiles"
 old_dir="$HOME/.dotfiles_old"
+custom_theme="attempt"
 files="bashrc vimrc zshrc profile zprofile"
 color='\033[0;33m' #yellow
 nocolor='\033[0m' # No Color
@@ -33,6 +34,11 @@ install_ohmyzsh (){
     exit | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null
 }
 
+install_custom_theme(){
+    info "Installing custom theme"
+    cp $dir/themes/$custom_theme.zsh-theme $HOME/.oh-my-zsh/themes
+}
+
 install_dotfiles () {
     info "Installing dotfiles"
     for src in $(find -H "$dir" -maxdepth 2 -name '*.slink' -not -path '*.git*')
@@ -42,7 +48,8 @@ install_dotfiles () {
     done
 }
 
-backup_files
-install_programs
+#backup_files
+#install_programs
 #install_ohmyzsh
+install_custom_theme
 install_dotfiles

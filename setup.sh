@@ -36,7 +36,7 @@ install_ohmyzsh (){
 
 install_custom_theme(){
     info "Installing custom theme"
-    cp $dir/themes/$custom_theme.zsh-theme $HOME/.oh-my-zsh/themes
+    ln -sfv "$dir/themes/$custom_theme.zsh-theme" "$HOME/.oh-my-zsh/themes" 
 }
 
 install_dotfiles () {

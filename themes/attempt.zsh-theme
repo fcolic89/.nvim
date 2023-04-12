@@ -24,21 +24,21 @@ prompt_indicator() {
 #If the current directory is a git repo, show git information
 git_info(){
    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]];then
-     echo "-[%B$(git_repo_name):$(git_prompt_info)$(git_prompt_status)%b]"
+     echo "-[%B$(git_repo_name)%b:$(git_prompt_info)$(git_prompt_status)]"
    fi
 }
 
 # set the git_prompt_info text
-#ZSH_THEME_GIT_PROMPT_PREFIX="("
-#ZSH_THEME_GIT_PROMPT_SUFFIX=")"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} \u25cf%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[cyan]%} \u2708"
-#ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%} ✭"
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+#ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} \u25cf%f"
+#ZSH_THEME_GIT_PROMPT_CLEAN=""
+#ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[cyan]%} %f"
+#ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%} ✭%f"
 #ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✗"
 #ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%} ➦"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[magenta]%} ✂"
-ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[white]%} ✱"
+#ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[magenta]%} ✂"
+#ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[white]%} ✱%f"
 
 # putting it all together
 PROMPT='[%B$(username)%b]-[%B$(directory)%b]$(git_info)

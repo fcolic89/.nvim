@@ -1,5 +1,5 @@
 username() {
-   echo "%{$FG[012]%}%n@$HOST%{$reset_color%}"
+   echo "%{$FG[012]%}%n%f@%{$FG[012]%}$HOST%f"
 }
 
 directory() {
@@ -34,6 +34,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%}%{?%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY=""
+ZSH_THEME_GIT_PROMPT_SEPARATOR=" "
 
 # putting it all together
 PROMPT='[%B$(username)%b]-[%B$(directory)%b]$(git_info)

@@ -4,7 +4,7 @@
 name="SETUP.SH"
 programs="git htop zsh curl tig neovim"
 dir="$HOME/.dotfiles"
-old_dir="$HOME/.dotfiles_old"
+old_dir="$HOME/.old-dotfiles"
 custom_theme="attempt"
 files="bashrc vimrc zshrc profile zprofile"
 color='\033[0;33m' #yellow

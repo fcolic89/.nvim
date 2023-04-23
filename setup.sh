@@ -51,5 +51,5 @@ install_dotfiles () {
 #backup_files
 #install_programs
 #install_ohmyzsh
-install_custom_theme
+# install_custom_theme
 install_dotfiles

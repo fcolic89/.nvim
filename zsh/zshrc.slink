@@ -42,5 +42,5 @@ source $ZSH/oh-my-zsh.sh
 #Loading .zsh files
 for src in $(find -H "$dir" -maxdepth 2 -name "*.zsh")
 do
-    source $src
+    source $src 2> /dev/null
 done

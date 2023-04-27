@@ -1,12 +1,5 @@
 alias d="docker"
-alias dr="docker rm"
-alias dri="docker rmi"
-alias dra="docker rm $(docker ps -aq)"
-alias dria="docker rmi $(docker images -q)"
 alias dpa="docker ps -a"
 alias dpr="docker container prune"
-alias dcu="docker compose up"
 alias dcd="docker compose down"
-alias ds="docker stop"
-alias dsa="docker stop $(docker ps -q)"
 

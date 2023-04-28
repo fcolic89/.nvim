@@ -28,7 +28,7 @@ ZSH_THEME="attempt"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 plugins=(git-prompt)
 

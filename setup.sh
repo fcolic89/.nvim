@@ -2,7 +2,7 @@
 
 #Variables
 name="SETUP.SH"
-programs="git htop zsh curl tig neovim tmux"
+programs="git htop zsh curl tig neovim tmux fzf"
 dir="$HOME/.dotfiles"
 old_dir="$HOME/.old-dotfiles"
 custom_theme="attempt"

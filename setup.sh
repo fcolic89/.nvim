@@ -34,6 +34,14 @@ install_ohmyzsh (){
     exit | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null
 }
 
+install_plugins (){
+    info "Installing auto suggestions plugin"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+    info "Installing syntax highlighting plugin"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+}
+
 install_custom_theme(){
     info "Installing custom theme"
     ln -sfv "$dir/themes/$custom_theme.zsh-theme" "$HOME/.oh-my-zsh/themes" 
@@ -53,3 +61,4 @@ install_dotfiles () {
 #install_ohmyzsh
 # install_custom_theme
 install_dotfiles
+# install_plugins

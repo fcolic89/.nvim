@@ -49,7 +49,7 @@ function dcu(){
    docker compose --profile $2 up $3
   elif [[ ! -z $1 ]] && [[ $1 != "-p" ]]
   then
-   docker compose up $1
+   docker compose up $1 $2
   else
     echo "An error occured while trying to call docker compose up!"
   fi

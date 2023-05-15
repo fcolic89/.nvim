@@ -1,3 +1,3 @@
 # .dotfiles
 ## Fonts:
-https://github.com/kalaschnik/meslolgs-nf-template
+https://github.com/romkatv/powerlevel10k/blob/master/font.md

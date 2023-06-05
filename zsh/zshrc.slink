@@ -28,9 +28,9 @@ ZSH_THEME="attempt"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
-plugins=(git-prompt)
+plugins=(git-prompt fzf zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -42,5 +42,5 @@ source $ZSH/oh-my-zsh.sh
 #Loading .zsh files
 for src in $(find -H "$dir" -maxdepth 2 -name "*.zsh")
 do
-    source $src
+    source $src 2> /dev/null
 done

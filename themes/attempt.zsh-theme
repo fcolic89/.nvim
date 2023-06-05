@@ -24,7 +24,7 @@ prompt_indicator() {
 #If the current directory is a git repo, show git information
 git_info(){
    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]];then
-     echo "-[%B$(git_super_status)$b]"
+     echo "-[%B$(git_repo_name)%b:%B$(git_super_status)$b]"
    fi
 }
 

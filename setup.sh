@@ -2,7 +2,7 @@
 
 #Variables
 name="SETUP.SH"
-programs="git htop zsh curl tig neovim"
+programs="git htop zsh curl tig neovim tmux fzf"
 dir="$HOME/.dotfiles"
 old_dir="$HOME/.old-dotfiles"
 custom_theme="attempt"
@@ -34,6 +34,14 @@ install_ohmyzsh (){
     exit | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null
 }
 
+install_plugins (){
+    info "Installing auto suggestions plugin"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+    info "Installing syntax highlighting plugin"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+}
+
 install_custom_theme(){
     info "Installing custom theme"
     ln -sfv "$dir/themes/$custom_theme.zsh-theme" "$HOME/.oh-my-zsh/themes" 
@@ -51,5 +59,6 @@ install_dotfiles () {
 #backup_files
 #install_programs
 #install_ohmyzsh
-install_custom_theme
+# install_custom_theme
 install_dotfiles
+# install_plugins

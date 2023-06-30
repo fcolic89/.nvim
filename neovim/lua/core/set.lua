@@ -16,3 +16,5 @@ vim.opt.ttyfast = true
 vim.opt.confirm = true
 vim.opt.showcmd = true
 vim.opt.wrap = false
+
+vim.cmd[[colorscheme tokyonight]]

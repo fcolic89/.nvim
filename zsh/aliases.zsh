@@ -11,5 +11,6 @@ alias apr="sudo apt purge"
 alias acp="apt-cache policy"
 alias e="nvim"
 alias ee="subl"
-alias af="alias | grep"
+alias af="alias | grep" #find an alias
 alias cl="clear"
+alias adt="cat << EOF >>" #add text

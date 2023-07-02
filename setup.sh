@@ -49,7 +49,7 @@ install_custom_theme(){
 
 install_dotfiles () {
     info "Installing dotfiles"
-    for src in $(find -H "$dir" -maxdepth 2 -name '*.slink' -not -path '*.git*')
+    for src in $(find -H "$dir" -maxdepth 2 -name '*.slink' -not \( -path '*.git*' -path '*neovim/*' \))
     do
       dst="$HOME/.$(basename "${src%.*}")"
       ln -sfv "$src" "$dst"

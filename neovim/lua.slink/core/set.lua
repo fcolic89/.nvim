@@ -18,12 +18,3 @@ vim.opt.showcmd = true
 vim.opt.wrap = false
 
 vim.cmd[[colorscheme tokyonight]]
-
-vim.api.nvim_create_user_command(
-    'Far',
-    function(opts)
-	    local command = "%s/\\<"..opts.fargs[1].."\\>/"..opts.fargs[2].."/g"
-	    vim.cmd(command)
-    end,
-    { nargs = "*" }
-)

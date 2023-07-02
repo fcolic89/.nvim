@@ -4,7 +4,10 @@ set -e
 
 dir=$HOME/.config/nvim
 
-#copy old files
+clone packer(plugin manager) repo
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+copy old files
 if [ -d "$dir" ]; then
   mv $dir $HOME/.config/.old-nvim-config > /dev/null
 fi
@@ -13,9 +16,10 @@ mkdir -p $dir
 
 file_names=`ls $(dirname -- "$0")`
 
+#link files
 for name in $file_names
 do
-  if [ "$name" == "setup.sh" ]; then
+  if [[ "${name##*.}" != "slink" ]]; then
       continue
   fi
   dst="$dir/${name%.*}"

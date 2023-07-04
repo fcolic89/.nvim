@@ -26,6 +26,12 @@ keymap("n", "<A-j>", "<C-w>j", opts1)
 keymap("n", "<A-k>", "<C-w>k", opts1)
 keymap("n", "<A-l>", "<C-w>l", opts1)
 
+keymap("n", "<leader>/", "gcc<CR>", opts2)
+
+
+-- VISUAL MODE KEYMAPS
+keymap("v", "<leader>/", "gc<CR>", opts2)
+
 
 -- TERMINAL MODE KEYMAPS
 keymap("t", "<Esc>", "<C-\\><C-n><CR>", opts2)

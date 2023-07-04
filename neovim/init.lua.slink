@@ -3,6 +3,7 @@ require("core.set")
 require("plugin.plugins")
 require("plugin.autopairs")
 require("plugin.lualine")
+require('Comment').setup()
 
 
 -- disable netrw at the very start of your init.lua

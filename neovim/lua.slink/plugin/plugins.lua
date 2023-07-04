@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
             require("nvim-treesitter.install").update({ with_sync =    true })
         end,
     })
+    use 'nvim-lualine/lualine.nvim'
     use {
       'VonHeikemen/lsp-zero.nvim',
       branch = 'v2.x',

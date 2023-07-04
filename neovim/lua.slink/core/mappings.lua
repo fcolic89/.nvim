@@ -7,7 +7,8 @@ vim.g.mapleader = " "
 -- NORMAL MODE KEYMAPS
 keymap("n", "<leader>q", ":q<CR>", opts1)
 keymap("n", "<leader>w", ":w<CR>", opts1)
-keymap("n", "<leader>t", ":belowright split | te<CR>", opts1)
+keymap("n", "<leader>j", ":belowright split | startinsert | te <CR>", opts1)
+keymap("n", "<leader>l", ":vsplit | startinsert | te <CR>", opts1)
 keymap("n", "<leader>T", ":te<CR>", opts1)
 -- keymap("n", "<leader>e", ":tabnew | Ex<CR>", opts)
 -- keymap("n", "<leader>E", ":Ex<CR>", opts)

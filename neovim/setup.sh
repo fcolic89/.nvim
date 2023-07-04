@@ -4,10 +4,12 @@ set -e
 
 dir=$HOME/.config/nvim
 
-clone packer(plugin manager) repo
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+#clone packer(plugin manager) repo
+if [ -d "~/.local/share/nvim/site/pack/packer/" ]; then
+ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+fi
 
-copy old files
+#copy old files
 if [ -d "$dir" ]; then
   mv $dir $HOME/.config/.old-nvim-config > /dev/null
 fi

@@ -1,5 +1,6 @@
 require("core.mappings")
 require("core.set")
+require("core.functions")
 require("plugin.plugins")
 require("plugin.autopairs")
 require("plugin.lualine")

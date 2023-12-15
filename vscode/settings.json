@@ -1,4 +1,5 @@
 {
+    "workbench.editor.enablePreview": false,
     "vim.leader": "<Space>",
     "vim.commandLineModeKeyBindingsNonRecursive": [],
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -10,5 +11,27 @@
         "before": ["<Leader>", "q"],
         "commands": [":q"]
        }, 
+       {
+        "before": ["<Leader>", "h"],
+        "commands": ["workbench.action.previousEditor"]
+       }, 
+       {
+        "before": ["<Leader>", "l"],
+        "commands": ["workbench.action.nextEditor"]
+       }, 
+       {
+        "before": ["<Leader>", "f", "f"],
+        "commands": ["workbench.action.quickOpen"]
+       }, 
     ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [">"],
+            "commands": ["editor.action.indentLines"]
+        },
+        {
+            "before": ["<"],
+            "commands": ["editor.action.outdentLines"]
+        },
+    ]
 }

@@ -1,0 +1,14 @@
+{
+    "vim.leader": "<Space>",
+    "vim.commandLineModeKeyBindingsNonRecursive": [],
+    "vim.normalModeKeyBindingsNonRecursive": [
+       {
+        "before": ["<Leader>", "w"],
+        "commands": [":w"]
+       }, 
+       {
+        "before": ["<Leader>", "q"],
+        "commands": [":q"]
+       }, 
+    ],
+}

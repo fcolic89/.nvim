@@ -1,5 +1,11 @@
 {
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.validate": ["javascript"],
+
     "workbench.editor.enablePreview": false,
+
     "vim.leader": "<Space>",
     "vim.commandLineModeKeyBindingsNonRecursive": [],
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -33,5 +39,5 @@
             "before": ["<"],
             "commands": ["editor.action.outdentLines"]
         },
-    ]
+    ],
 }

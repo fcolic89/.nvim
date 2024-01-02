@@ -14,6 +14,6 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 " if <bar> is not working try |
 nnoremap <leader>e :tabnew <bar> Ex<CR>
-nnoremap [ gt<CR>
-nnoremap ] gT<CR>
+nnoremap [ :tabnext<CR>
+nnoremap ] :tabprevious<CR>
 

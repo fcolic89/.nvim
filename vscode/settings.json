@@ -18,11 +18,11 @@
         "commands": [":q"]
        }, 
        {
-        "before": ["<Leader>", "h"],
+        "before": ["["],
         "commands": ["workbench.action.previousEditor"]
        }, 
        {
-        "before": ["<Leader>", "l"],
+        "before": ["]"],
         "commands": ["workbench.action.nextEditor"]
        }, 
        {

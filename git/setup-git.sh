@@ -6,31 +6,31 @@ set -eo pipefail
 script_name="SETUP-GIT.SH"
 color='\033[0;33m' #yellow
 nocolor='\033[0m' # No Color
-name=""
-email=""
 result=-2
 
 info() {
-    echo -e "$color$1!$nocolor"
+    echo -e "$color$1$nocolor"
 }
 
 set_name_email(){
-  info "What is your git username?"
-  read name
-
-  while [ -z "$name" ]; do
-    info "Name cannot be empty.."
+  while true; do
     info "What is your git username?"
     read name
+    if [ -z "$name" ]; then
+      info "Name cannot be empty..."
+    else
+      break
+    fi
   done
 
-  info "What is your git email?"
-  read email
-
-  while [ -z "$email" ]; do
-    info "Email cannot be empty.."
+  while true; do
     info "What is your git email?"
     read email
+    if [ -z "$email" ]; then
+      info "Email cannot be empty..."
+    else
+      break
+    fi
   done
 }
 
@@ -52,8 +52,8 @@ confirm_name_email(){
   fi
 }
 
-set_name_email
 while true; do
+  set_name_email
   confirm_name_email
 
   if [[ $result == 1 ]]; then
@@ -65,7 +65,7 @@ while true; do
     info "Done"
     break
   elif [[ $result == 2 ]]; then
-    set_name_email
+    continue
   elif [[ $result == -1 ]]; then
     info "Aborting..."
     break

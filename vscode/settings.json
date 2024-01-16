@@ -26,7 +26,7 @@
         "commands": ["workbench.action.nextEditor"]
        }, 
        {
-        "before": ["<Leader>", "f", "f"],
+        "before": ["<Leader>", "f"],
         "commands": ["workbench.action.quickOpen"]
        }, 
     ],

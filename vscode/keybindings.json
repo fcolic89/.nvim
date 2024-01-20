@@ -1,18 +1,15 @@
-// Place your key bindings in this file to override the defaults
-[
-    { // Move focus to the SideBar if not (!) there
+[   
+    {
         "key": "ctrl+e",
-        "when": "!sideBarFocus",
-        "command": "workbench.action.focusSideBar"
+        "command": "workbench.view.explorer"
     },
-    { // Move focus to the Editor, if currently in the SideBar
-        "key": "ctrl+e",
-        "when": "sideBarFocus",
-        "command": "workbench.action.focusActiveEditorGroup"
-    },
-    { // Change SideBar vissibility 
+    {
         "key": "ctrl+a",
         "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+g",
+        "command": "workbench.action.toggleActivityBarVisibility"
     },
     {
         "key": "ctrl+h",

@@ -23,6 +23,7 @@ set mouse=a                         " Automatically enable mouse usage
 let mapleader = " "
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q!<CR>
 " if <bar> is not working try |
 nnoremap <leader>e :tabnew <bar> Ex<CR>
 nnoremap <leader>E :Ex<CR>

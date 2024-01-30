@@ -29,8 +29,8 @@ nnoremap <leader>e :tabnew <bar> Ex<CR>
 nnoremap <leader>E :Ex<CR>
 nnoremap <leader>s :Sex<CR>
 nnoremap <leader>l :Vex<CR>
-nnoremap [ :tabnext<CR>
-nnoremap ] :tabprevious<CR>
+nnoremap ] :tabnext<CR>
+nnoremap [ :tabprevious<CR>
 
 nnoremap <C-h>  <C-w>h
 nnoremap <C-j>  <C-w>j

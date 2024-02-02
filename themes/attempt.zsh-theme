@@ -1,26 +1,9 @@
-IS_GIT_REPO=0
 export PROMPT_SHOW_USER_INFO=0
 export PROMPT_DIRECTORY_DEPTH="2" # empty string for full path
-
-# check if the first director after zsh loads is a git repo
-if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]];then
-  IS_GIT_REPO=1
-else
-  IS_GIT_REPO=0
-fi
 
 username() {
    if [[ $PROMPT_SHOW_USER_INFO == 1 ]];then
       echo "[%B%{$FG[012]%}%n%f@%{$FG[012]%}$HOST%f%b]-"
-   fi
-}
-
-# a cd hook for checking if the current working directory is a git repository
-chpwd(){
-   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]];then
-      IS_GIT_REPO=1
-   else
-      IS_GIT_REPO=0
    fi
 }
 
@@ -42,7 +25,7 @@ prompt_indicator() {
 
 # If the current directory is a git repo, show git information
 git_info(){
-   if [[ $IS_GIT_REPO == 1 ]]; then
+   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]; then
      echo "-[%B$(git_repo_name)%b:%B$(git_super_status)$b]"
    fi
 }

@@ -30,12 +30,13 @@ install(){
   file_names=`ls $(dirname -- "$0")`
 
   #link files
+  substring_to_remove=".slink"
   for name in $file_names
   do
-    if [[ "${name##*.}" != "slink" ]]; then
+    if [[ "$name" != *"slink"* ]]; then
         continue
     fi
-    dst="$dir/${name%.*}"
+    dst="$dir/${name/$substring_to_remove}"
     ln -sfv "$(realpath $name)" "$dst"
   done
   

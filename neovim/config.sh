@@ -11,6 +11,7 @@ help_string(){
   --uninstall, -u    -> remove all symbolic links to neovim files and return to previous configuration if one exists
   --help, -h         -> help
 EOF
+  return 0
 }
 
 
@@ -57,12 +58,20 @@ uninstall(){
   return 0
 }
 
-if [ "$1" == "--install" -o "$1" == "-i" ]; then
-  install
-elif [ "$1" == "--uninstall" -o "$1" == "-u" ]; then
-  uninstall
-elif [ "$1" == "--help" -o "$1" == "-h" ]; then
-  help_string
-else
-  echo "Missing params. Type --help to see all options"
-fi
+main(){
+  if [ "$1" == "--install" -o "$1" == "-i" ]; then
+    install
+    return $?
+  elif [ "$1" == "--uninstall" -o "$1" == "-u" ]; then
+    uninstall
+    return $?
+  elif [ "$1" == "--help" -o "$1" == "-h" ]; then
+    help_string
+    return $?
+  else
+    echo "Missing params. Type --help to see all options"
+    return 1
+  fi
+}
+
+main $1

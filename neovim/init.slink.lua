@@ -1,11 +1,13 @@
 require("core.mappings")
 require("core.set")
 require("core.functions")
+-- plugins
 require("plugin.plugins")
 require("plugin.autopairs")
 require("plugin.lualine")
-require('Comment').setup()
-
+require("plugin.telescope")
+require("plugin.nvimtree")
+require("plugin.lspzero")
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -14,55 +16,4 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
--- empty setup using defaults
-require("nvim-tree").setup()
 
--- OR setup with some options
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    width = 30,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
-
-local lsp = require('lsp-zero').preset({})
-
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-end)
-
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-lsp.ensure_installed({
-  'gopls',
-  'lua_ls',
-})
-
-lsp.setup()
-
--- You need to setup `cmp` after lsp-zero
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-
-cmp.setup({
-  mapping = {
-    -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-
-    -- Ctrl+Space to trigger completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
-
-    -- Navigate between snippet placeholder
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-
-    ['<TAB>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-y>'] = nil
-  }
-})

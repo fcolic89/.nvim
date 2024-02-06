@@ -1,2 +1,7 @@
 -- empty setup using defaults
-require("nvim-tree").setup()
+return {
+  'nvim-tree/nvim-tree.lua',
+  dependecies = {
+    'nvim-tree/nvim-web-devicons', -- optional
+  },
+}

@@ -1,64 +1,125 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #Variables
-name="SETUP.SH"
-programs="git htop zsh curl tig neovim tmux fzf ranger"
-dir="$HOME/.dotfiles"
-old_dir="$HOME/.old-dotfiles"
-custom_theme="attempt"
+NAME="SETUP.SH"
+GITHUB_REPO="https://github.com/fcolic89/.dotfiles"
+GITHUB_REPO_SSH="git@github.com:fcolic89/.dotfiles.git"
+PROGRAMS_TO_INSTALL="htop zsh tig vim tmux fzf ranger"
+INSTALL_DIR="$HOME/.dotfiles"
+BACKUP_DIR="$HOME/.old-dotfiles"
+CUSTOM_THEME="attempt"
 files="bashrc vimrc zshrc profile zprofile"
-color='\033[0;33m' #yellow
-nocolor='\033[0m' # No Color
+color_yellow='\e[33m' #yellow
+color_red='\e[31m' #red
+nocolor='\e[0m' # No Color
 
-info() {
-    echo -e "$color[$name] $1!$nocolor"
+info_message() {
+    echo -e "$color_yellow[$NAME] $1!$nocolor"
+}
+
+error_message() {
+    echo -e "$color_red[$NAME] $1!$nocolor"
 }
 
 backup_files () {
-    info "Backing up old dotfiles"
-    mkdir -p $old_dir
-    cd $dir
+    info "=> Backing up old dotfiles"
+    mkdir -p $BACKUP_DIR
     for file in $files; do
-       mv ~/.$file $old_dir
+       mv ~/.$file $BACKUP_DIR
     done
 }
 
 install_programs(){
-   info "Installing programs"
-   sudo apt update
-   sudo apt install $programs
+   if [ "$PROGRAMS" = "0" ]; then
+     return 0
+   fi
+   info_message "=> Installing programs"
+   if [ -n "$(uname -a | egrep 'Ubuntu|Debian')" ]; then
+     sudo apt update
+     sudo apt install $PROGRAMS_TO_INSTALL
+   elif [ -n "$(uname -a | grep 'Fedora')" ]; then
+     sudo dnf check-update
+     sudo dnf install $PROGRAMS_TO_INSTALL
+   else
+     error_message "=> No known way of installing programs"
+   fi
 }
 
 install_ohmyzsh (){
-    info "Installing oh-my-zsh"
-    exit | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null
+    if [ -d "$HOME/.oh-my-zsh" ]; then
+      info_message "=> Oh-my-zsh is already inslled, trying to update"
+      command git -C "$ZSH" pull
+    else
+      info_message "=> Installing oh-my-zsh"
+      exit | sh -c "$(command curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null
+    fi
+
+    info_message "=> Installing syntax highlighting plugin"
+    command git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2> /dev/null
+
+    info_message "=> Installing custom theme"
+    command ln -sfv "$INSTALL_DIR/themes/$CUSTOM_THEME.zsh-theme" "$HOME/.oh-my-zsh/themes" 
 }
 
-install_plugins (){
-    info "Installing auto suggestions plugin"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-    info "Installing syntax highlighting plugin"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+switch_git_branch(){
+  # Switch to a different brach, if one is provided by the user
+  if [ ! -z "$GITHUB_BRANCH" ]; then
+    command git -C "$INSTALL_DIR" fetch origin "$GITHUB_BRANCH" 2> /dev/null
+    if [ $(command git -C "$INSTALL_DIR" branch -a | command grep "$GITHUB_BRANCH") 2> /dev/null ]; then
+      info_message "=> Switching to branch $GITHUB_BRANCH"
+      command git -C "$INSTALL_DIR" switch "$GITHUB_BRANCH"
+    fi
+  fi
 }
 
-install_custom_theme(){
-    info "Installing custom theme"
-    ln -sfv "$dir/themes/$custom_theme.zsh-theme" "$HOME/.oh-my-zsh/themes" 
+get_dotfiles_from_git(){
+  if [ -d "$INSTALL_DIR/.git" ]; then
+    switch_git_branch
+    # Update repo
+    info_message "=> Dotfiles already installed in $INSTALL_DIR, trying to update using git"
+    command git -C "$INSTALL_DIR" pull || {
+      error_message "=> Failed to update dotfiles, run 'git pull' in $INSTALL_DIR yourself"
+      exit
+    }
+  else
+    # Clone repo
+    mkdir -p "$INSTALL_DIR"
+    info_message "=> Cloning git repo"
+    if [ "$GITHUB_SSH" = "1" ]; then
+      command git clone "$GITHUB_REPO_SSH" "$INSTALL_DIR" || {
+        error_message "=> Failed to clone dotfiles repo! Better luck next time."
+        exit
+      }
+    else
+      command git clone "$GITHUB_REPO" "$INSTALL_DIR" || {
+        error_message "=> Failed to clone dotfiles repo! Better luck next time."
+        exit
+      }
+    fi
+    switch_git_branch
+  fi
 }
 
-install_dotfiles () {
-    info "Installing dotfiles"
-    for src in $(find -H "$dir" -maxdepth 2 -name '*.slink' -not \( -path '*.git*' -path '*neovim/*' \))
+link_dotfiles () {
+    info_message "=> Linking dotfiles"
+    for src in $(command find -H "$INSTALL_DIR" -maxdepth 2 -name '*.slink' -not \( -path '*.git*' -path '*neovim/*' \))
     do
       dst="$HOME/.$(basename "${src%.*}")"
-      ln -sfv "$src" "$dst"
+      command ln -sfv "$src" "$dst"
     done
 }
 
-backup_files
-install_programs
-install_ohmyzsh
-install_custom_theme
-install_dotfiles
-install_plugins
+main(){
+  if [ ! $(type -p "git") ] || [ ! $(type -p "curl") ]; then
+    error_message "=> Failed to start setup script. Git and curl need to be installed!"
+    exit
+  fi
+  backup_files
+  get_dotfiles_from_git
+  install_programs
+  install_ohmyzsh
+  link_dotfiles
+}
+
+main
+

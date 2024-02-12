@@ -30,7 +30,8 @@ ZSH_THEME="attempt"
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-plugins=(git-prompt fzf zsh-syntax-highlighting)
+plugins=(git-prompt fzf zsh-syntax-highlighting nvm)
+zstyle ':omz:plugins:nvm' lazy yes
 
 source $ZSH/oh-my-zsh.sh
 

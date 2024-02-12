@@ -58,7 +58,7 @@ install_ohmyzsh (){
     command git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2> /dev/null
 
     info_message "=> Installing custom theme"
-    command ln -sfv "$INSTALL_DIR/themes/$CUSTOM_THEME.zsh-theme" "$HOME/.oh-my-zsh/themes" 
+    command ln -sfv "$INSTALL_DIR/themes/$CUSTOM_THEME.zsh-theme" "$HOME/.oh-my-zsh/custom/themes" 
 }
 
 switch_git_branch(){

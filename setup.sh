@@ -34,12 +34,14 @@ install_programs(){
      return 0
    fi
    info_message "=> Installing programs"
-   if [ -n "$(uname -a | egrep 'Ubuntu|Debian')" ]; then
-     sudo apt update
-     sudo apt install $PROGRAMS_TO_INSTALL
-   elif [ -n "$(uname -a | grep 'Fedora')" ]; then
-     sudo dnf check-update
-     sudo dnf install $PROGRAMS_TO_INSTALL
+   if [ -n "$(uname -a | grep 'Linux')" ]; then
+     if [ $(command -v "apt") ]; then
+       sudo apt update
+       sudo apt install $PROGRAMS_TO_INSTALL
+     elif [ $(command -v "dnf") ]; then
+       sudo dnf check-update
+       sudo dnf install $PROGRAMS_TO_INSTALL
+      fi
    else
      error_message "=> No known way of installing programs"
    fi

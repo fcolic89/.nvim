@@ -112,7 +112,7 @@ link_dotfiles () {
 }
 
 main(){
-  if [ ! $(type -p "git") ] || [ ! $(type -p "curl") ]; then
+  if [ ! $(command -v "git") ] || [ ! $(command -v "curl") ]; then
     error_message "=> Failed to start setup script. Git and curl need to be installed!"
     exit
   fi

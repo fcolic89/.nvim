@@ -104,7 +104,7 @@ get_dotfiles_from_git(){
 
 link_dotfiles () {
     info_message "=> Linking dotfiles"
-    for src in $(command find -H "$INSTALL_DIR" -maxdepth 2 -name '*.slink' -not \( -path '*.git*' -path '*neovim/*' \))
+    for src in $(command find -H "$INSTALL_DIR" -maxdepth 2 -name '*.slink' -not \( -path '*.git*' \) -not \( -path '*neovim*' \))
     do
       dst="$HOME/.$(basename "${src%.*}")"
       command ln -sfv "$src" "$dst"

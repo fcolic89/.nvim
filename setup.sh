@@ -22,7 +22,7 @@ error_message() {
 }
 
 backup_files () {
-    info "=> Backing up old dotfiles"
+    info_message "=> Backing up old dotfiles"
     mkdir -p $BACKUP_DIR
     for file in $files; do
        mv ~/.$file $BACKUP_DIR

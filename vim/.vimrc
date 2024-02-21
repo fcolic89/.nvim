@@ -19,20 +19,31 @@ set visualbell                      " Use visual bell instead of beeping
 set ignorecase                      " Ignroe case when searching
 set laststatus=2                    " Always show the status line
 set mouse=a                         " Automatically enable mouse usage
+set clipboard=unnamedplus           " Copy to and from the system clipboard (might require the vim-gui-common package)
+set confirm                         " Confirm exit when there are unsaved changes
 
 let mapleader = " "
+
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :q!<CR>
-" if <bar> is not working try |
-nnoremap <leader>e :tabnew <bar> Ex<CR>
-nnoremap <leader>E :Ex<CR>
+
+" buffers
+nnoremap <leader>e :Ex<CR>
 nnoremap <leader>s :Sex<CR>
 nnoremap <leader>l :Vex<CR>
-nnoremap ] :tabnext<CR>
-nnoremap [ :tabprevious<CR>
-
+nnoremap <leader>k :ls<CR>
 nnoremap <C-\> :vsplit<CR>
+nnoremap <leader>f :b 
+nnoremap <leader>c :bdelete<CR> 
+nnoremap ] :bnext<CR>
+nnoremap [ :bprev<CR>
+
+" tabs
+" if <bar> is not working try |
+nnoremap <leader>E :tabnew <bar> Ex<CR>
+nnoremap <leader>] :tabnext<CR>
+nnoremap <leader>[ :tabprevious<CR>
 
 nnoremap <C-h>  <C-w>h
 nnoremap <C-j>  <C-w>j

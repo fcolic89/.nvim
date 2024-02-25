@@ -54,3 +54,14 @@ function dcu(){
     echo "An error occured while trying to call docker compose up!"
   fi
 }
+
+#a function for interactive selection of a container that will execute /bin/bash
+function dbash(){
+  if [ ! $(command -v "fzf") ]; then
+    echo "Error: fzf needs to be installed to use this function.(https://github.com/junegunn/fzf)"
+    return 1
+  fi
+  local options=$(command docker ps | command awk 'NR > 1 {print $1, $2, $NF}')
+  local selected_option=$(command printf "%s\n" "${options[@]}" | command fzf --header=$'CONTAINER ID  IMAGE  NAME\n' --layout=reverse --prompt="Select a container: ")
+  command docker exec -it $(command echo $selected_option | awk '{print $3}') /bin/bash $@
+}

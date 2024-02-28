@@ -30,18 +30,20 @@ ZSH_THEME="attempt"
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-plugins=(git-prompt fzf zsh-syntax-highlighting nvm)
-zstyle ':omz:plugins:nvm' lazy yes
+# Load mise
+eval "$($HOME/.local/bin/mise activate zsh)"
+
+plugins=(git-prompt fzf zsh-syntax-highlighting mise)
 
 source $ZSH/oh-my-zsh.sh
 
-alias python=python3
+alias py=python3
 # export LANG=en_US.UTF-8
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-#Loading .zsh files
+# Source .zsh files
 for src in $(find -H "$dir" -maxdepth 2 -name "*.zsh")
 do
     source $src 2> /dev/null

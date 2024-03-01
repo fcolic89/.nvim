@@ -20,6 +20,7 @@ vim.opt.wrap = true
 vim.opt.autoread = true
 
 vim.cmd.colorscheme('habamax')
+vim.cmd.highlight('MatchParen cterm=bold ctermbg=0 ctermfg=200')
 
 -- keymaps
 local opts = {noremap=true, silent=true}
@@ -55,6 +56,9 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- terminal 
 keymap("n", "<leader>j", ":belowright split | startinsert | te <CR>", opts)
+
+-- INSERT MODE KEYMAPS
+keymap("i", "<C-c>", "<Esc>", opts)
 
 -- TERMINAL MODE KEYMAPS
 keymap("t", "<Esc>", "<C-\\><C-n><CR>", opts)

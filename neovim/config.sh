@@ -16,11 +16,6 @@ EOF
 
 
 install(){
-  #clone packer(plugin manager) repo
-  if [ ! -d "~/.local/share/nvim/site/pack/packer/" ]; then
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-  fi
-
   #copy old config files
   if [ -d "$dir" ]; then
     mv $dir $old_dir > /dev/null
@@ -41,8 +36,6 @@ install(){
     ln -sfv "$(realpath $name)" "$dst"
   done
   
-  #download all plugins
-  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' 2> /dev/null
   return 0
 }
 

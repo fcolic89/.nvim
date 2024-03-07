@@ -22,4 +22,5 @@ vim.opt.autoread = true
 
 if not pcall(vim.cmd.colorscheme, 'tokyonight') then
     vim.cmd.colorscheme('habamax')
+    vim.cmd.highlight('MatchParen cterm=bold ctermbg=0 ctermfg=200')
 end

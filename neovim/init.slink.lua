@@ -9,7 +9,6 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
-require('nvim-tree').setup()
 
 -- lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -37,3 +36,4 @@ require('lazy').setup({
     },
 }, {})
 
+require('nvim-tree').setup()

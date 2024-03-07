@@ -35,5 +35,3 @@ require('lazy').setup({
         notify = false,
     },
 }, {})
-
-require('nvim-tree').setup()

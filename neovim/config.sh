@@ -2,8 +2,9 @@
 
 set -e
 
+dotfiles_dir=$HOME/.dotfiles/neovim
 dir=$HOME/.config/nvim
-old_dir=$HOME/.config/.old-nvim-config
+backup_dir=$HOME/.config/.old-nvim-config
 
 help_string(){
   cat << EOF
@@ -18,12 +19,12 @@ EOF
 install(){
   #copy old config files
   if [ -d "$dir" ]; then
-    mv $dir $old_dir > /dev/null
+    mv $dir $backup_dir > /dev/null
   fi
 
   mkdir -p $dir
 
-  file_names=`ls $(dirname -- "$0")`
+  file_names=$(ls "$dotfiles_dir") 
 
   #link files
   substring_to_remove=".slink"
@@ -33,34 +34,32 @@ install(){
         continue
     fi
     dst="$dir/${name/$substring_to_remove}"
-    ln -sfv "$(realpath $name)" "$dst"
+    ln -sfv "$dotfiles_dir/$name" "$dst"
   done
   
   return 0
 }
 
 uninstall(){
-  # remove packer and all plugins
-  rm -rf ~/.local/share/nvim/site/pack/
+  # remove lazy and all plugins
+  rm -rf ~/.local/share/nvim/
   # remove all symbolic links to config files
   rm -rf ~/.config/nvim
   #return the old config
-  if [ -d "$old_dir" ]; then
-    mv $old_dir $dir                         
+  if [ -d "$backup_dir" ]; then
+    mv $backup_dir $dir                         
   fi
+
   return 0
 }
 
 main(){
-  if [ "$1" == "--install" -o "$1" == "-i" ]; then
+  if [ "$1" == "--install" ] || [ "$1" == "-i" ]; then
     install
-    return $?
-  elif [ "$1" == "--uninstall" -o "$1" == "-u" ]; then
+  elif [ "$1" == "--uninstall" ] || [ "$1" == "-u" ]; then
     uninstall
-    return $?
-  elif [ "$1" == "--help" -o "$1" == "-h" ]; then
+  elif [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
     help_string
-    return $?
   else
     echo "Missing params. Type --help to see all options"
     return 1

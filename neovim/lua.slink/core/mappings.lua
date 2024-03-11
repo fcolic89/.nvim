@@ -8,7 +8,7 @@ keymap("n", "<leader>q", ":q<CR>", opts)
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>Q", ":q!<CR>", opts)
 
-keymap("n", "<leader>j", ":belowright split | startinsert | te <CR>", opts)
+keymap("n", "<leader>j", ":lua open_terminal() <CR>", opts)
 -- keymap("n", "<leader>e", ":tabnew | Ex<CR>", opts)
 -- keymap("n", "<leader>E", ":Ex<CR>", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)

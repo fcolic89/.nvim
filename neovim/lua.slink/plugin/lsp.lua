@@ -84,9 +84,31 @@ return {
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+      local lsp_config = require('lspconfig')
+
       local servers = {
         tsserver = {},
-        lua_ls = {}
+        lua_ls = {},
+        eslint = {
+          root_dir = lsp_config.util.root_pattern('package.json'),
+          settings = {
+            eslint = {
+              packageManager = 'npm',
+              codeAction = {
+                showDocumentation = {
+                  enable = true
+                },
+              },
+            },
+          },
+          on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              command = "EslintFixAll",
+            })
+          end,
+        }
       }
 
       require('mason').setup()
@@ -100,7 +122,7 @@ return {
       require('mason-lspconfig').setup_handlers({
         function(server_name)
           local server = servers[server_name] or {}
-          require('lspconfig')[server_name].setup(server)
+          lsp_config[server_name].setup(server)
         end
       })
     end

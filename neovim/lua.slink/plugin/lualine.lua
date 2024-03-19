@@ -3,7 +3,7 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     options = {
-        theme = "habamax",
+      theme = "gruvbox",
     },
     config = function()
       require('lualine').setup()

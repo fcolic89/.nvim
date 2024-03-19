@@ -35,4 +35,12 @@ require('lazy').setup({
   },
 }, {})
 
+-- load ignored files
+for file in io.popen('ls "lua.slink/ignore_me"'):lines() do
+  if file:sub(-4) == ".lua" then
+    require("ignore_me." .. file:sub(1, -5))
+  end
+end
+
+-- format file on save
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]

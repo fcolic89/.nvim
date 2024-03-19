@@ -1,3 +1,2 @@
-neovim/plugin
-!neovim/lua/plugin
+neovim/lua.slink/ignore_me/
 *.swp

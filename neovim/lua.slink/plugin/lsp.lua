@@ -89,6 +89,7 @@ return {
 
       local servers = {
         tsserver = {},
+        gopls = {},
         lua_ls = {},
         eslint = {
           root_dir = lsp_config.util.root_pattern('package.json'),

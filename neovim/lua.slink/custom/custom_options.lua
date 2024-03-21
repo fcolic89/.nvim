@@ -1,0 +1,2 @@
+-- custom options, that won't be tracked by git, go here
+-- tnis module is loaded after all other core modules and plugins

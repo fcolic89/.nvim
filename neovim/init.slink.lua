@@ -36,9 +36,9 @@ require('lazy').setup({
 }, {})
 
 -- load ignored files
-for file in io.popen("ls " .. debug.getinfo(1, "S").source:sub(2, -10) .. "/lua/ignore_me/"):lines() do
+for file in io.popen("ls " .. debug.getinfo(1, "S").source:sub(2, -10) .. "/lua/custom/"):lines() do
   if file:sub(-4) == ".lua" then
-    require("ignore_me." .. file:sub(1, -5))
+    require("custom." .. file:sub(1, -5))
   end
 end
 

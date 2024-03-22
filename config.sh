@@ -2,7 +2,7 @@
 
 set -e
 
-dotfiles_dir=$HOME/.dotfiles/neovim
+dotfiles_dir=$HOME/.dotfiles/nvim
 dir=$HOME/.config/nvim
 backup_dir=$HOME/.config/.old-nvim-config
 

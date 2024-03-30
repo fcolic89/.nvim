@@ -9,8 +9,6 @@ keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>Q", ":q!<CR>", opts)
 
 keymap("n", "<leader>j", ":lua open_terminal() <CR>", opts)
--- keymap("n", "<leader>e", ":tabnew | Ex<CR>", opts)
--- keymap("n", "<leader>E", ":Ex<CR>", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
 keymap("n", "<leader>cc", ":bd<CR>", opts)
@@ -28,9 +26,13 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-f>", "<Esc>", opts)
+
+-- VISUAL MODE KEYMAPS
+keymap("v", "<C-f>", "<Esc>", opts)
 
 -- INSERT MODE KEYMAPS
-keymap("i", "<C-c>", "<Esc>", opts)
+keymap("i", "<C-f>", "<Esc>", opts)
 
 -- TERMINAL MODE KEYMAPS
 keymap("t", "<Esc>", "<C-\\><C-n><CR>", opts)

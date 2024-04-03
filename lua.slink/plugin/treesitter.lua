@@ -16,7 +16,10 @@ return {
           "javascript",
           "html",
           "python",
-          "bash"
+          "bash",
+          "vimdoc",
+          "java",
+          "query"
         },
         sync_install = false,
         highlight = { enable = true },

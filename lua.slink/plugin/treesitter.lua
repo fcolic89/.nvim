@@ -14,6 +14,7 @@ return {
           "json",
           "go",
           "javascript",
+          "typescript",
           "html",
           "python",
           "bash",

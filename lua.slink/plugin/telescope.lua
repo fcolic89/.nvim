@@ -19,6 +19,6 @@ return {
     require('telescope').load_extension('ui-select')
 
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, {})
+    vim.keymap.set('n', '<leader>p', builtin.buffers, {})
   end
 }

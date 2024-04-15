@@ -91,6 +91,7 @@ return {
         tsserver = {},
         gopls = {},
         lua_ls = {},
+        pyright = {},
         eslint = {
           root_dir = lsp_config.util.root_pattern('package.json'),
           settings = {

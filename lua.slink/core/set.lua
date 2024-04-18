@@ -19,3 +19,4 @@ vim.opt.confirm = true
 vim.opt.showcmd = true
 vim.opt.wrap = false
 vim.opt.autoread = true
+vim.opt.cmdheight = 0

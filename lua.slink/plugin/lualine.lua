@@ -13,7 +13,7 @@ return {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = { 'branch' },
-          lualine_c = { 'buffers' },
+          lualine_c = { 'filename' },
           lualine_x = { 'searchcount' },
           lualine_y = { 'filetype' },
           lualine_z = { 'location' }

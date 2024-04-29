@@ -5,8 +5,11 @@ return {
     'nvim-tree/nvim-web-devicons', -- optional
   },
   config = function()
-    require('nvim-tree').setup {}
-    local api = require('nvim-tree.api')
-    vim.keymap.set("n", "<leader>e", api.tree.toggle, opts)
+    vim.keymap.set("n", "<leader>nt", function()
+      if not vim.g.NvimTreeSetup then
+        require('nvim-tree').setup {}
+      end
+      require('nvim-tree.api').tree.toggle()
+    end, {})
   end
 }

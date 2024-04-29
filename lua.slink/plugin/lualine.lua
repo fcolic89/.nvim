@@ -5,7 +5,6 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'gruvbox',
           disabled_filetypes = {
             'NvimTree'
           },

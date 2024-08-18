@@ -46,9 +46,9 @@ return {
           --  Symbols are things like variables, functions, types, etc.
           map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
-          -- Rename the variable under your cursor
+          -- Rename an element(function ,variable, ...)
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>re', vim.lsp.buf.rename, '[R]ename [E]lemnt')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
@@ -91,6 +91,7 @@ return {
         tsserver = {},
         gopls = {},
         lua_ls = {},
+        jdtls = {},
         pyright = {},
         eslint = {
           root_dir = lsp_config.util.root_pattern('package.json'),

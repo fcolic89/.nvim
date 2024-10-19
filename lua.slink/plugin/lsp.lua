@@ -88,8 +88,11 @@ return {
       local lsp_config = require('lspconfig')
 
       local servers = {
-        tsserver = {},
+        ts_ls = {},
         gopls = {},
+        bashls = {
+          filetypes = { "sh", "bash", "zsh" }
+        },
         lua_ls = {},
         jdtls = {},
         pyright = {},

@@ -20,7 +20,8 @@ return {
           "bash",
           "vimdoc",
           "java",
-          "query"
+          "query",
+          "markdown"
         },
         sync_install = false,
         highlight = { enable = true },

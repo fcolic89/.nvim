@@ -20,7 +20,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>t", ":lua open_terminal() <CR>", opts)
 keymap("n", "<leader>rp", ":lua find_and_replace()<CR>", opts)
 
 -- VISUAL MODE KEYMAPS

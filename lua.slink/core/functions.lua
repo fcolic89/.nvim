@@ -11,14 +11,3 @@ function find_and_replace()
     print('No input provided')
   end
 end
-
-function open_terminal()
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    local buffer_name = vim.fn.bufname(bufnr)
-    if buffer_name ~= "" and string.match(buffer_name, "term://*") then
-      vim.cmd("belowright split | startinsert | buffer " .. bufnr)
-      return
-    end
-  end
-  vim.cmd("belowright split | startinsert | te")
-end

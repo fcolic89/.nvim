@@ -28,10 +28,3 @@ keymap("v", "<C-f>", "<Esc>", opts)
 
 -- INSERT MODE KEYMAPS
 keymap("i", "<C-f>", "<Esc>", opts)
-
--- TERMINAL MODE KEYMAPS
-keymap("t", "<Esc>", "<C-\\><C-n><CR>", opts)
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h<CR>", opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j<CR>", opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k<CR>", opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l<CR>", opts)

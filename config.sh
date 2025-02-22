@@ -2,9 +2,6 @@
 
 set -e
 
-install_dir="$HOME/.config/nvim"
-backup_dir="$HOME/.config/.old-nvim-config"
-
 usage() {
   cat <<EOF
 config.sh [OPTIONS]
@@ -14,11 +11,13 @@ Options:
   --uninstall, -u    -> remove all symbolic links to neovim files and return to previous configuration if one exists
   --help, -h         -> help
 EOF
-  return 0
 }
 
 install() {
   echo "==> Installing neovim config"
+
+  local install_dir="$HOME/.config/nvim"
+  local backup_dir="$HOME/.config/.old-nvim-config-$(date +%s)"
 
   if [[ -d "$install_dir" ]]; then
     mv "$install_dir" "$backup_dir" >/dev/null
@@ -37,8 +36,6 @@ install() {
     local dst="$install_dir/${name/$substring_to_remove/}"
     ln -sfv "$config_location/$name" "$dst"
   done
-
-  return 0
 }
 
 uninstall() {
@@ -46,13 +43,6 @@ uninstall() {
 
   rm -rf ~/.local/share/nvim/
   rm -rf ~/.config/nvim
-
-  echo "==> Restoring backup version of the config"
-  if [[ -d "$backup_dir" ]]; then
-    mv "$backup_dir" "$install_dir"
-  fi
-
-  return 0
 }
 
 [[ $# -eq 0 ]] && usage && exit 1
@@ -72,11 +62,13 @@ while [[ $# -gt 0 ]]; do
     shift
     ;;
   --)
+    shift
     break
     ;;
   *)
     echo "==> Missing a valid parameter"
     usage
+    exit 1
     ;;
   esac
 done

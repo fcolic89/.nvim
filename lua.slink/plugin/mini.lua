@@ -9,6 +9,7 @@ return {
         }
       }
       require('mini.pairs').setup {}
+      require('mini.completion').setup {}
     end
   },
 }

@@ -4,7 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      explorer = { enabled = true },
+      explorer = { enabled = false },
       picker = { enabled = true },
       indent = {
         enabled = true,

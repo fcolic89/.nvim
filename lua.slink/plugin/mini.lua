@@ -9,7 +9,10 @@ return {
         }
       }
       require('mini.pairs').setup {}
-      require('mini.completion').setup {}
+      require('mini.files').setup {}
+      -- require('mini.completion').setup {}
+
+      vim.keymap.set('n', "<leader>e", ":lua MiniFiles.open()<CR>", { silent = true })
     end
   },
 }

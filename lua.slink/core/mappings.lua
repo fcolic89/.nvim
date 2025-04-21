@@ -13,12 +13,12 @@ keymap("n", "<leader>cc", ":bd<CR>", opts)
 keymap("n", "<leader><leader>", "<C-^>", opts)
 keymap("n", "-", ":tabprev<CR>", opts)
 keymap("n", "=", ":tabnext<CR>", opts)
-keymap("n", "<Esc>", ":nohlsearch<CR>", opts)
 
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<leader>sa", "ggVG", opts)
 
 keymap("n", "<leader>rp", ":lua find_and_replace()<CR>", opts)
 

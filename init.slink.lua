@@ -18,10 +18,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local config_path = vim.fn.stdpath('config')
+local plugin_spec = {
+  { import = 'plugin' }
+}
+
+-- include custom plugins, if they exist
+if os.execute('ls ' .. config_path .. '/lua/plugin/custom' .. ' | grep -q .lua') == 0 then
+  table.insert(plugin_spec, { import = 'plugin/custom' })
+end
+
 require('lazy').setup({
-  spec = {
-    { import = 'plugin' },
-  },
+  spec = plugin_spec,
   defaults = {
     lazy = false,
   },
@@ -30,8 +38,8 @@ require('lazy').setup({
   },
 }, {})
 
--- load ignored files
-for file in io.popen("ls " .. debug.getinfo(1, "S").source:sub(2, -10) .. "/lua/custom/"):lines() do
+-- load custom lua files
+for file in io.popen("ls " .. config_path .. "/lua/custom/"):lines() do
   if file:sub(-4) == ".lua" then
     require("custom." .. file:sub(1, -5))
   end

@@ -36,6 +36,8 @@ install() {
     local dst="$install_dir/${name/$substring_to_remove/}"
     ln -sfv "$config_location/$name" "$dst"
   done
+
+  echo "==> Done!"
 }
 
 uninstall() {
@@ -43,6 +45,8 @@ uninstall() {
 
   rm -rf ~/.local/share/nvim/
   rm -rf ~/.config/nvim
+
+  echo "==> Done!"
 }
 
 [[ $# -eq 0 ]] && usage && exit 1

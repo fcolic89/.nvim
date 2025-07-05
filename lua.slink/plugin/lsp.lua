@@ -5,7 +5,6 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
@@ -35,19 +34,22 @@ return {
         end,
       })
 
-      local lsp_config = require('lspconfig')
-
-      local servers = {
-        ts_ls = {},
-        gopls = {},
+      local needed_servers = {
+        "ts_ls",
+        "gopls",
+        "bashls",
+        "lua_ls",
+        "jdtls",
+        "pyright",
+        "eslint",
+        "clangd"
+      }
+      local server_configs = {
         bashls = {
           filetypes = { "sh", "bash", "zsh" }
         },
-        lua_ls = {},
-        jdtls = {},
-        pyright = {},
         eslint = {
-          root_dir = lsp_config.util.root_pattern('package.json'),
+          root_dir = require('lspconfig').util.root_pattern('package.json'),
           settings = {
             eslint = {
               packageManager = 'npm',
@@ -64,23 +66,19 @@ return {
               command = "EslintFixAll",
             })
           end,
-        }
+        },
       }
 
-      require('mason').setup()
-
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup_handlers({
-        function(server_name)
-          local server = servers[server_name] or {}
-          lsp_config[server_name].setup(server)
+      for name, config in pairs(server_configs) do
+        if config then
+          vim.lsp.config(name, config)
         end
-      })
+      end
+
+      require('mason').setup()
+      require('mason-lspconfig').setup {
+        ensure_installed = needed_servers,
+      }
     end
   },
 }

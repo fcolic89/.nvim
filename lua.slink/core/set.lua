@@ -20,3 +20,12 @@ vim.opt.showcmd = true
 vim.opt.wrap = false
 vim.opt.autoread = true
 vim.opt.cmdheight = 0
+
+vim.diagnostic.config({
+  virtual_lines = {
+    current_line = true,
+    severity = {
+      min = vim.diagnostic.severity.ERROR
+    }
+  },
+})

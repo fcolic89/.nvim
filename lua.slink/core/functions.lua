@@ -11,3 +11,18 @@ function find_and_replace()
     print('No input provided')
   end
 end
+
+function toggle_diagnostics()
+  local config = vim.diagnostic.config()
+  local virtual_lines_config = {
+    current_line = true,
+    severity = {
+      min = vim.diagnostic.severity.ERROR
+    }
+  }
+
+  vim.diagnostic.config({
+    virtual_text = not config.virtual_text,
+    virtual_lines = not config.virtual_lines and virtual_lines_config or false
+  })
+end

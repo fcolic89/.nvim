@@ -8,11 +8,13 @@ return {
       configs.setup({
         ensure_installed = {
           "c",
+          "cpp",
           "lua",
           "vim",
           "tsx",
           "json",
           "go",
+          "rust",
           "javascript",
           "typescript",
           "html",

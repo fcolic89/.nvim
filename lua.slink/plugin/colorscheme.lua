@@ -5,12 +5,13 @@ return {
     priority = 1000,
   },
   {
-    "bluz71/vim-moonfly-colors",
-    name = "moonfly",
-    lazy = false,
-    priority = 1000,
+    "vague2k/vague.nvim",
     config = function()
-      vim.cmd.colorscheme('moonfly')
+      -- NOTE: you do not need to call setup if you don't want to.
+      require("vague").setup({
+        -- optional configuration here
+      })
+      vim.cmd.colorscheme('vague')
     end
   },
 }

@@ -7,8 +7,11 @@ return {
       sources = {
         default = { "lsp", "buffer" },
       },
+      keymap = {
+        preset = 'super-tab'
+      },
       fuzzy = {
-        implementation = 'lua'
+        implementation = 'prefer_rust'
       }
     }
   }

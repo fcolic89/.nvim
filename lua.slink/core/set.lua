@@ -20,6 +20,7 @@ vim.opt.showcmd = true
 vim.opt.wrap = false
 vim.opt.autoread = true
 vim.opt.cmdheight = 0
+vim.opt.termguicolors = true
 
 vim.diagnostic.config({
   virtual_lines = {

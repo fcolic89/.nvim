@@ -52,7 +52,8 @@ return {
         "jdtls",
         "pyright",
         "eslint",
-        "clangd"
+        "clangd",
+        "rust_analyzer"
       }
       local server_configs = {
         bashls = {

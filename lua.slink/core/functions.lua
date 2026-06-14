@@ -12,13 +12,17 @@ function find_and_replace()
   end
 end
 
-function open_terminal()
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    local buffer_name = vim.fn.bufname(bufnr)
-    if buffer_name ~= "" and string.match(buffer_name, "term://*") then
-      vim.cmd("belowright split | startinsert | buffer " .. bufnr)
-      return
-    end
-  end
-  vim.cmd("belowright split | startinsert | te")
+function toggle_diagnostics()
+  local config = vim.diagnostic.config()
+  local virtual_lines_config = {
+    current_line = true,
+    severity = {
+      min = vim.diagnostic.severity.ERROR
+    }
+  }
+
+  vim.diagnostic.config({
+    virtual_text = not config.virtual_text,
+    virtual_lines = not config.virtual_lines and virtual_lines_config or false
+  })
 end

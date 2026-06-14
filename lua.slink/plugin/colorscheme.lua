@@ -1,36 +1,17 @@
-vim.o.background = 'dark' -- can be "light" or "dark"
-
 return {
   {
-    "ellisonleao/gruvbox.nvim",
+    "rebelot/kanagawa.nvim",
+    lazy = false,
     priority = 1000,
-    config = function()
-      require('gruvbox').setup {
-        contrast = "hard" -- can be "hard", "soft" or an empty string
-      }
-
-      -- vim.cmd.colorscheme('gruvbox')
-    end
   },
   {
-    'rose-pine/neovim',
+    "vague2k/vague.nvim",
     config = function()
-      require('rose-pine').setup {
-        styles = {
-          transparency = false
-        }
-      }
-
-      --vim.cmd.colorscheme('rose-pine')
-    end
-  },
-  {
-    'aktersnurra/no-clown-fiesta.nvim',
-    config = function()
-      require('no-clown-fiesta').setup {
-        transparent = true
-      }
-      vim.cmd.colorscheme('no-clown-fiesta')
+      -- NOTE: you do not need to call setup if you don't want to.
+      require("vague").setup({
+        -- optional configuration here
+      })
+      vim.cmd.colorscheme('vague')
     end
   },
 }

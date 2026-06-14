@@ -1,6 +1,6 @@
-require("core.mappings")
 require("core.set")
 require("core.functions")
+require("core.mappings")
 require("plugin-manager")
 
 -- load custom lua files

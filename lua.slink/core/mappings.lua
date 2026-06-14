@@ -20,9 +20,9 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>sa", "ggVG", opts)
 
-keymap("n", "<leader>rp", ":lua find_and_replace()<CR>", opts)
-keymap("n", "<leader>df", ":lua vim.diagnostic.open_float()<CR>", opts)
-keymap("n", "<leader>td", ":lua toggle_diagnostics()<CR>", opts)
+keymap("n", "<leader>rp", find_and_replace, opts)
+keymap("n", "<leader>df", vim.diagnostic.open_float, opts)
+keymap("n", "<leader>td", toggle_diagnostics, opts)
 
 -- VISUAL MODE KEYMAPS
 keymap("v", "<C-f>", "<Esc>", opts)

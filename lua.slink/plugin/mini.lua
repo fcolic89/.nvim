@@ -1,3 +1,8 @@
+function open_current_buffer()
+  buffer = vim.api.nvim_buf_get_name(0)
+  MiniFiles.open(buffer)
+end
+
 return {
   {
     'echasnovski/mini.nvim',
@@ -12,7 +17,7 @@ return {
       require('mini.files').setup {}
       -- require('mini.completion').setup {}
 
-      vim.keymap.set('n', "<leader>e", ":lua MiniFiles.open()<CR>", { silent = true })
+      vim.keymap.set('n', "<leader>e", open_current_buffer, { silent = true })
     end
   },
 }

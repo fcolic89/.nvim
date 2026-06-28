@@ -76,6 +76,22 @@ local server_configs = {
       })
     end,
   },
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim' }
+        },
+        workspace = {
+          library = {
+            vim.env.VIMRUNTIME,
+            vim.env.VIMRUNTIME .. "./lua"
+          },
+          checkThirdParty = false
+        }
+      }
+    }
+  }
 }
 
 for name, config in pairs(server_configs) do

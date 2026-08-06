@@ -4,7 +4,14 @@ vim.pack.add({
 
 require("snacks").setup {
   explorer = { enabled = false },
-  picker = { enabled = true },
+  picker = {
+    enabled = true,
+    sources = {
+      files = {
+        hidden = true
+      }
+    }
+  },
   indent = {
     enabled = true,
     animate = {

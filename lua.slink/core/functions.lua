@@ -26,3 +26,8 @@ function toggle_diagnostics()
     virtual_lines = not config.virtual_lines and virtual_lines_config or false
   })
 end
+
+function copy_file_path_to_clipboard()
+  local path = vim.api.nvim_buf_get_name(0)
+  vim.fn.setreg('+', path)
+end

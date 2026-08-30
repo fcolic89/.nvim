@@ -23,6 +23,7 @@ keymap("n", "<leader>sa", "ggVG", opts)
 keymap("n", "<leader>rp", find_and_replace, opts)
 keymap("n", "<leader>df", vim.diagnostic.open_float, opts)
 keymap("n", "<leader>td", toggle_diagnostics, opts)
+keymap("n", "<leader>cfp", copy_file_path_to_clipboard, opts)
 
 -- VISUAL MODE KEYMAPS
 keymap("v", "<C-f>", "<Esc>", opts)

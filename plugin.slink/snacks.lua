@@ -6,6 +6,10 @@ require("snacks").setup {
   explorer = { enabled = false },
   picker = {
     enabled = true,
+    exclude = {
+      ".git",
+      "node_modules"
+    },
     sources = {
       files = {
         hidden = true
